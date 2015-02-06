@@ -1,0 +1,12 @@
+﻿Build started 28/01/2015 17:15:35.
+     1>Project "C:\Users\vinicius\Desktop\OpenCV Sample\OpenCV Sample.vcxproj" on node 2 (Build target(s)).
+     1>Link:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\vinicius\Desktop\OpenCV Sample\Output\Release\OpenCV Sample.exe" /INCREMENTAL:NO /NOLOGO /LIBPATH:"C:\Users\vinicius\Desktop\OpenCV Sample\Dependecies\OpenCV\x86\vc12\lib" opencv_calib3d2410.lib opencv_contrib2410.lib opencv_core2410.lib opencv_features2d2410.lib opencv_flann2410.lib opencv_gpu2410.lib opencv_highgui2410.lib opencv_imgproc2410.lib opencv_legacy2410.lib opencv_ml2410.lib opencv_nonfree2410.lib opencv_objdetect2410.lib opencv_ocl2410.lib opencv_photo2410.lib opencv_stitching2410.lib opencv_superres2410.lib opencv_ts2410.lib opencv_video2410.lib opencv_videostab2410.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\vinicius\Desktop\OpenCV Sample\Output\Release\OpenCV Sample.pdb" /SUBSYSTEM:CONSOLE /OPT:REF /OPT:ICF /LTCG /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\vinicius\Desktop\OpenCV Sample\Output\Release\OpenCV Sample.lib" /MACHINE:X86 /SAFESEH "C:\Users\vinicius\Desktop\OpenCV Sample\Intermediate\Release\Main.obj"
+         Generating code
+         Finished generating code
+         OpenCV Sample.vcxproj -> C:\Users\vinicius\Desktop\OpenCV Sample\Output\Release\OpenCV Sample.exe
+     1>Done Building Project "C:\Users\vinicius\Desktop\OpenCV Sample\OpenCV Sample.vcxproj" (Build target(s)).
+
+Build succeeded.
+
+Time Elapsed 00:00:00.78

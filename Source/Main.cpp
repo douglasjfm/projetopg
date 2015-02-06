@@ -26,7 +26,7 @@ int main()
 			break;
 
 		cap >> image;
-		imshow("...",image);
+		imshow("....",image);
 	}
 
 	return 0;

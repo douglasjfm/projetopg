@@ -10,7 +10,8 @@ using namespace std;
 
 int main()
 {
-	VideoCapture cap("Resources\\video.mp4");
+    int fcount = 0;
+	VideoCapture cap("Resources/video.ogg");
 	Mat image;
 
 	if (!cap.isOpened())
@@ -22,10 +23,11 @@ int main()
 
 	while (true)
 	{
-		if (waitKey(1) == 27)
+		if (waitKey(120) == 27)
 			break;
 
 		cap >> image;
+		fcount++;
 		imshow("....",image);
 	}
 

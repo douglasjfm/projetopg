@@ -1,0 +1,73 @@
+# depslib dependency file v1.0
+1423961491 source:/home/douglas/Documentos/pg2/projetopg/Source/Main.cpp
+	"opencv2/video/tracking.hpp"
+	"opencv2/imgproc/imgproc.hpp"
+	"opencv2/highgui/highgui.hpp"
+	<iostream>
+	<ctype.h>
+
+1412148816 /usr/local/include/opencv2/video/tracking.hpp
+	"opencv2/core/core.hpp"
+	"opencv2/imgproc/imgproc.hpp"
+
+1412148816 /usr/local/include/opencv2/core/core.hpp
+	"opencv2/core/types_c.h"
+	"opencv2/core/version.hpp"
+	<limits.h>
+	<algorithm>
+	<cmath>
+	<cstddef>
+	<complex>
+	<map>
+	<new>
+	<string>
+	<vector>
+	<sstream>
+	"opencv2/core/operations.hpp"
+	"opencv2/core/mat.hpp"
+
+1412148816 /usr/local/include/opencv2/core/types_c.h
+	<assert.h>
+	<stdlib.h>
+	<string.h>
+	<float.h>
+	<stdint.h>
+	<intrin.h>
+	<emmintrin.h>
+	<fastmath.h>
+	<math.h>
+	<ipl.h>
+	<ipl/ipl.h>
+	"tegra_round.hpp"
+	"emmintrin.h"
+
+1412148816 /usr/local/include/opencv2/core/version.hpp
+
+1412148816 /usr/local/include/opencv2/core/operations.hpp
+	<string.h>
+	<limits.h>
+	<ext/atomicity.h>
+	<bits/atomicity.h>
+	<limits>
+
+1412148816 /usr/local/include/opencv2/core/mat.hpp
+	<limits.h>
+	<string.h>
+
+1412148816 /usr/local/include/opencv2/imgproc/imgproc.hpp
+	"opencv2/core/core.hpp"
+	"opencv2/imgproc/types_c.h"
+
+1412148816 /usr/local/include/opencv2/imgproc/types_c.h
+	"opencv2/core/core_c.h"
+
+1412148816 /usr/local/include/opencv2/core/core_c.h
+	"opencv2/core/types_c.h"
+
+1412148816 /usr/local/include/opencv2/highgui/highgui.hpp
+	"opencv2/core/core.hpp"
+	"opencv2/highgui/highgui_c.h"
+
+1412148816 /usr/local/include/opencv2/highgui/highgui_c.h
+	"opencv2/core/core_c.h"
+

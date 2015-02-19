@@ -25,7 +25,32 @@ void imgPontosChaves(Mat img, std::vector<KeyPoint> *kps, Mat *pontos)
     SurfFeatureDetector detector(400);
 
     detector.detect(img, *kps);
-    drawKeypoints(img,*kps,*pontos,4);
+    drawKeypoints(img,*kps,*pontos/*,Scalar(127,127,127)*/,4);
+}
+
+Mat cinzasSobel (Mat src_gray, Mat grad)
+{
+    int scale = 1;
+    int delta = 0;
+    int ddepth = CV_16S;
+    /// Generate grad_x and grad_y
+    Mat grad_x, grad_y;
+    Mat abs_grad_x, abs_grad_y;
+
+    /// Gradient X
+    //Scharr( src_gray, grad_x, ddepth, 1, 0, scale, delta, BORDER_DEFAULT );
+    Sobel( src_gray, grad_x, ddepth, 1, 0, 3, scale, delta, BORDER_DEFAULT );
+    convertScaleAbs( grad_x, abs_grad_x );
+
+    /// Gradient Y
+    //Scharr( src_gray, grad_y, ddepth, 0, 1, scale, delta, BORDER_DEFAULT );
+    Sobel( src_gray, grad_y, ddepth, 0, 1, 3, scale, delta, BORDER_DEFAULT );
+    convertScaleAbs( grad_y, abs_grad_y );
+
+    /// Total Gradient (approximate)
+    addWeighted( abs_grad_x, 0.5, abs_grad_y, 0.5, 0, grad );
+
+    return grad;
 }
 
 void casar (Mat desc1, Mat desc2, vector<DMatch> *m)
@@ -37,47 +62,53 @@ void casar (Mat desc1, Mat desc2, vector<DMatch> *m)
 int main()
 {
     int fcount = 0;
-	VideoCapture capModel("objs.jpg");
-	VideoCapture capPadrao("obj.jpg");
-	Mat padrao, modelo, kPadrao, kModelo, kCasada, exModelo, exPadrao;
-	std::vector<KeyPoint> kpPadrao, kpModelo;
-	vector<DMatch> pontosCasados;
 
+    Mat padrao, modelo, kPadrao, kModelo, kCasada, exModelo, exPadrao;
+    Mat padraoCinza, modeloCinza, padraoBlur, modeloBlur;
+    Mat padraoSobel, modeloSobel;
+    std::vector<KeyPoint> kpPadrao, kpModelo;
+    vector<DMatch> pontosCasados;
 
-	if (!capModel.isOpened() || !capPadrao.isOpened())
-	{
-		cout << "error, could not open one of the capture" << endl;
-		system("pause");
-		exit(1);
-	}
+    modelo =  imread("mesa.jpg");
+    padrao =  imread("marca.jpg");
 
-    capModel >> modelo;
-    capPadrao >> padrao;
+    /// Filtro gaussiano
+    GaussianBlur(padrao, padrao, Size(3,3), 0, 0, BORDER_DEFAULT);
+    GaussianBlur(modelo, modelo, Size(3,3), 0, 0, BORDER_DEFAULT);
 
-    imgPontosChaves(modelo,&kpModelo,&kModelo);
-    imgPontosChaves(padrao,&kpPadrao,&kPadrao);
+    /// RGB -> Escala de cinza
+    cvtColor(padrao, padraoCinza, CV_RGB2GRAY);
+    cvtColor(modelo, modeloCinza, CV_RGB2GRAY);
 
+    /// Filtro de Sobel
+    //padraoSobel = cinzasSobel(padraoCinza,padraoSobel);
+    //modeloSobel = cinzasSobel(modeloCinza,modeloSobel);
+
+    /// Calculo de pontos chave
+    imgPontosChaves(modeloCinza,&kpModelo,&kModelo);
+    imgPontosChaves(padraoCinza,&kpPadrao,&kPadrao);
+
+    /// Extracao de features
     imgExtracao(modelo,kpModelo,&exModelo);
     imgExtracao(padrao,kpPadrao,&exPadrao);
 
     casar(exModelo,exPadrao,&pontosCasados);
 
-    drawMatches(exModelo, kpModelo, exPadrao, kpPadrao, pontosCasados, kCasada);
+    drawMatches(modelo, kpModelo, padrao, kpPadrao, pontosCasados, kCasada);
 
-	while (true)
-	{
-            if (waitKey(1) == 13)
-			break;
-        //if (image.rows == 0)
-        //    break;
+    while (true)
+    {
+        if (waitKey(30) == 13)
+            break;
 
-		//fcount++;
-		imshow("PG - CIn/UFPE 2014.2 - M",kModelo);
-		imshow("PG - CIn/UFPE 2014.2 - P",kPadrao);
-		imshow("PG - CIn/UFPE 2014.2",kCasada);
-	}
-
+        fcount++;
+        //imshow("PG - CIn/UFPE 2014.2 - M",exModelo);
+        //imshow("PG - CIn/UFPE 2014.2 - P",exPadrao);
+        imshow("PG - CIn/UFPE 2014.2",kCasada);
+    }
+    imwrite("match.jpg", kCasada);
+    imwrite("kModelo.jpg",kModelo);
+    imwrite("kPadrao.jpg",kPadrao);
     printf("\n\t# de Frames: %d",fcount);
-
-	return 0;
+    return 0;
 }

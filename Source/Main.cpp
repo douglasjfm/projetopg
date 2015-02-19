@@ -85,8 +85,8 @@ int main()
     //modeloSobel = cinzasSobel(modeloCinza,modeloSobel);
 
     /// Calculo de pontos chave
-    imgPontosChaves(modeloCinza,&kpModelo,&kModelo);
-    imgPontosChaves(padraoCinza,&kpPadrao,&kPadrao);
+    imgPontosChaves(modeloCinza,&kpModelo,&kModelo);///Caso usar o filtro de Sobel, usar 'modeloSobel';
+    imgPontosChaves(padraoCinza,&kpPadrao,&kPadrao);///Caso usar o filtro de Sobel, usar 'padraoSobel';
 
     /// Extracao de features
     imgExtracao(modelo,kpModelo,&exModelo);
